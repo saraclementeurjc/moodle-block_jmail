@@ -1050,14 +1050,16 @@ class block_jmail_mailbox {
      * Performs a text search in the user object
      * @param object $contact A user object
      * @return object A single user
+     * 
+     *  textlib is deprecated -> core_text  ---Moodle 2.9
      */
     private function filter_contacts_initials($contact) {
         $textlib = textlib_get_instance();
-        $firstname = $textlib->strtolower($contact->firstname);
-        $lastname = $textlib->strtolower($contact->lastname);
-        $currentsearch = $textlib->strtolower($this->currentsearch);
+        $firstname = core_text::strtolower($contact->firstname);
+        $lastname = core_text::strtolower($contact->lastname);
+        $currentsearch = core_text::strtolower($this->currentsearch);
 
-        return ($textlib->strpos($firstname, $currentsearch) === 0) or ($textlib->strpos($lastname, $currentsearch) === 0);
+        return (core_text::strpos($firstname, $currentsearch) === 0) or (core_text::strpos($lastname, $currentsearch) === 0);
 
     }
 
@@ -1065,15 +1067,17 @@ class block_jmail_mailbox {
      * Performs a text search in the user object
      * @param object $contact A user object
      * @return object A single user
+     * 
+     * textlib is deprecated -> core_text  ---Moodle 2.9
      */
 
     private function filter_contacts_like($contact) {
         $textlib = textlib_get_instance();
-        $firstname = $textlib->strtolower($contact->firstname);
-        $lastname = $textlib->strtolower($contact->lastname);
-        $currentsearch = $textlib->strtolower($this->currentsearch);
+        $firstname = core_text::strtolower($contact->firstname);
+        $lastname = core_text::strtolower($contact->lastname);
+        $currentsearch = core_text::strtolower($this->currentsearch);
 
-        return ($textlib->strpos($firstname, $currentsearch) !== false) or ($textlib->strpos($lastname, $currentsearch) !== false);
+        return (core_text::strpos($firstname, $currentsearch) !== false) or (core_text::strpos($lastname, $currentsearch) !== false);
 
     }
 
